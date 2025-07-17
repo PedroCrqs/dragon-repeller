@@ -21,7 +21,11 @@ const weapons = [
   { name: "dagger", power: 30 },
   { name: "claw hammer", power: 50 },
   { name: "sword", power: 100 },
+  { name: "great sword", power: 150 },
+  { name: "legendary sword", power: 200 },
+  { name: "excalibur", power: 250 },
 ];
+
 const monsters = [
   {
     name: "slime",
@@ -127,11 +131,16 @@ function goCave() {
 }
 
 function buyHealth() {
-  if (gold >= 10) {
+  if (gold >= 10 && health < 100) {
     gold -= 10;
     health += 10;
+    if (health > 100) {
+      health = 100;
+    }
     goldText.innerText = gold;
     healthText.innerText = health;
+  } else if (health == 100) {
+    text.innerText = "You already have full health!";
   } else {
     text.innerText = "You do not have enough gold to buy health.";
   }
